@@ -48,7 +48,9 @@ def show_melon(melon_id):
     Show all info about a melon. Also, provide a button to buy that melon.
     """
     melon = melons.get_by_id(melon_id)
-    print(melon)
+    # print(melon)
+
+
     return render_template("melon_details.html",
                            display_melon=melon)
 
@@ -97,7 +99,14 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
-    return "Oops! This needs to be implemented!"
+
+    cart = session
+    cart[melon_id] = cart.get(melon_id, 0) + 1
+
+    print(cart)
+    flash("Melon successfully added!")
+
+    return redirect("cart")
 
 
 @app.route("/login", methods=["GET"])
