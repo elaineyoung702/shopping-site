@@ -50,7 +50,6 @@ def show_melon(melon_id):
     melon = melons.get_by_id(melon_id)
     # print(melon)
 
-
     return render_template("melon_details.html",
                            display_melon=melon)
 
@@ -77,6 +76,11 @@ def show_shopping_cart():
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
 
+    # if "cart" in session:
+
+    print(session)
+
+
     return render_template("cart.html")
 
 
@@ -99,14 +103,16 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
+    if "cart" not in session:
+        session["cart"] = {}
 
-    cart = session
+    cart = session["cart"]
     cart[melon_id] = cart.get(melon_id, 0) + 1
 
-    print(cart)
+    # print(cart)
     flash("Melon successfully added!")
 
-    return redirect("cart")
+    return redirect("/cart")
 
 
 @app.route("/login", methods=["GET"])
