@@ -76,9 +76,15 @@ def show_shopping_cart():
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
 
-    # if "cart" in session:
 
-    print(session)
+    cart = session["cart"]
+    print(cart)
+    # melons = []
+    # total_order_cost = 0
+
+    # for melon in cart:
+    #     melons.append[melon]
+
 
 
     return render_template("cart.html")
